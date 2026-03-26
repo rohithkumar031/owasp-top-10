@@ -127,10 +127,12 @@ Challenge Link: http://10.49.154.138:5005
 
 Writeup:
 
-image
+<img width="631" height="826" alt="image" src="https://github.com/user-attachments/assets/dcb2d5e2-df53-4242-88b3-05b63e109ea6" />
+
 Hitting /api/users/admin this endpoint reveals
 
-image
+<img width="1114" height="848" alt="image" src="https://github.com/user-attachments/assets/7bdfb422-9d42-449a-ae1a-2a6fbfc86f47" />
+
 We can see /api/users/admin gives some data lets try fuzzing the endpoint after /api/ with /admin maybe we can get endpoints like /api/profile/admin or /api/data/admin
 
 Fuzzing with ffuf:
@@ -138,11 +140,12 @@ Fuzzing with ffuf:
 Command:
 
 ffuf -u http://10.49.154.138:5005/api/FUZZ/admin -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt
-image
+<img width="1522" height="832" alt="image" src="https://github.com/user-attachments/assets/b1100bbd-b480-4eba-b1f4-dd76dd101a9a" />
+
 We get /messages endpoints which reveals the flag:
 
-image
-Flag: THM{1NS3CUR3_D35IGN_4SSUMPT10N}
+<img width="520" height="197" alt="image" src="https://github.com/user-attachments/assets/fd0f2793-557d-40eb-b963-8ae5b24a2780" />
+THM{1NS3CUR3_D35IGN_4SSUMPT10N}
 
 Insecure Data Handling(3/3)
 Writeup:
@@ -154,10 +157,12 @@ So we can bruteforce which burp and find the key.
 
 Setting up the burp intruder and selecting the last character of the key and select bruteforce mode in the intruder
 
-image
+<img width="1113" height="526" alt="image" src="https://github.com/user-attachments/assets/518cd900-22c3-4831-a5f2-d83b6da9d918" />
+
 Now filter the responses with Length we can see 1 has the highest length lets try KEY1 .
 
-image
+<img width="831" height="322" alt="image" src="https://github.com/user-attachments/assets/a7fd503a-7662-4bd1-897e-de6b2fe429f5" />
+
 Flag: THM{WEAK_CRYPTO_FLAG}
 
 Software or Data Integrity Failures
@@ -179,7 +184,9 @@ print(encoded)
 O/P:
 
 gASVMwAAAAAAAACMCGJ1aWx0aW5zlIwEZXZhbJSTlIwXb3BlbignZmxhZy50eHQnKS5yZWFkKCmUhZRSlC4=
-image
+<img width="1495" height="643" alt="image" src="https://github.com/user-attachments/assets/40aa9a4e-d6f0-47e0-bd17-813e140d8a21" />
+
 Flag: THM{INSECURE_DESERIALIZATION}
 
-image 
+<img width="1003" height="783" alt="image" src="https://github.com/user-attachments/assets/a0348c63-9afd-4bd3-a0ed-85a1a45d077a" />
+
